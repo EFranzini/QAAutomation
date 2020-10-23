@@ -1,8 +1,8 @@
 ***Settings***
-Resource      ../Resources/commom_resources.resource
-Resource      ../Resources/001_posts_resources.resource
+Resource    ../Resources/commom_resources.resource
+Resource    ../Resources/001_posts_resources.resource
 
-Test Setup    Connect to api
+Suite Setup    Connect to api
 
 ***Test Cases***
 Scenario 01: When the user request the posts list
