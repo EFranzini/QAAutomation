@@ -10,3 +10,9 @@ Scenario 01: When the user request the posts list
     When the user request the posts
     Then the requisition should be successful
     And the response should be a list of valid posts
+
+Scenario 02: When the user send a post
+    Given the default header is created
+    When the user send a post
+    Then the requisition should be successful
+    And the new post sent response should be valid
