@@ -1,3 +1,5 @@
 #Robot framework
-
 Robot/Integration/Output/*
+
+#Python cache
+__pycache__
