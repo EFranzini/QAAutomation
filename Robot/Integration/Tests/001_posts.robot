@@ -16,3 +16,8 @@ Scenario 02: When the user send a post
     When the user send a post
     Then the requisition should be successful
     And the new post sent response should be valid
+
+Scenario 03: When the user want to delete his specif post
+    Given the default header is created
+    When the delete request is send
+    Then the requisition should be successful

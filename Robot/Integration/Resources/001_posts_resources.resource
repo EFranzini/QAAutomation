@@ -26,3 +26,7 @@ And the new post sent response should be valid
     Dictionary should contain item    ${request.json()}    title     ${NEW_POST_PAYLOAD.get("title")}     
     Dictionary should contain item    ${request.json()}    body      ${NEW_POST_PAYLOAD.get("body")}      
     Dictionary should contain item    ${request.json()}    userId    ${NEW_POST_PAYLOAD.get("userId")}    
+
+When the delete request is send
+    ${request}=          Delete request       APIUrl    ${POSTS_ENDPOINT}${POST_NUMBER_1}    headers=${default_header}
+    Set test variable    ${request}
