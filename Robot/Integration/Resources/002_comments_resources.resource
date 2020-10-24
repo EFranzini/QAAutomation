@@ -1,5 +1,6 @@
 ***Settings***
 Library    RequestsLibrary
+Library    BuiltIn
 Library    Collections
 
 ***Keywords***
@@ -10,10 +11,18 @@ When the general comments is requested
 And the comments should return in payload
     FOR    ${comment}    IN    @{request.json()}
 
-    Dictionary should contain item    ${comment}                  postId    ${comment.get("postId")}
-    Dictionary should contain item    ${comment}                  id        ${comment.get("id")}
-    Dictionary should contain item    ${comment}                  name      ${comment.get("name")}
-    Dictionary should contain item    ${comment}                  email     ${comment.get("email")} 
-    Dictionary should contain key     ${comment}                  body
+    ${post_id}=       Evaluate      isinstance(${comment.get("postId")}, int) 
+    Should be true    ${post_id}
+
+    ${id}=            Evaluate    isinstance(${comment.get("id")}, int)
+    Should be true    ${id}
+
+    ${name}=          Evaluate    isinstance('${comment.get("name")}', str)
+    Should be true    ${name}
+
+    ${email}=         Evaluate    isinstance('${comment.get("email")}', str)
+    Should be true    ${email}
+
+    Dictionary should contain key    ${comment}    body
 
     END
