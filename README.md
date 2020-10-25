@@ -1,0 +1,1 @@
+To install browser driver, just download it and move to /bin folder
