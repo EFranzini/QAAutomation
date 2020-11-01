@@ -26,3 +26,8 @@ And the comments should return in payload
     Dictionary should contain key    ${comment}    body
 
     END
+
+When specific post comments are requested
+    [Arguments]          ${POST_ID}
+    ${request}=          Get request                                APIUrl    ${COMMENTS_ENDPOINT}?postId=${POST_ID}
+    Set test variable    ${request}
