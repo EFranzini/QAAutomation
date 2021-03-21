@@ -1,4 +1,6 @@
 ***Settings***
+Resource    ../Resources/commom_resources.resource
+
 Library    SeleniumLibrary
 
 Variables    ../constants.py
@@ -42,4 +44,5 @@ And click on Register button
 
 Then the user registration should be successful
     Wait until element is visible    class=account 
-    Element Text Should Be           class=account     John Test User
+    Title Should Be                  My account - My Store
+    Element Text Should Be           class=account            John Test User

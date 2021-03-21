@@ -1,5 +1,4 @@
 ***Settings***
-Resource    ../Resources/commom_resources.resource
 Resource    ../Resources/001_signup_resources.resource
 
 Test Setup       Access website
