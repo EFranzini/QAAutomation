@@ -16,6 +16,27 @@ When I insert an valid e-mail
     ${datetime} =    Get Time           epoch
     Input text       id=email_create    validEmail${datetime}@validTest.com
 
+When I insert an invalid e-mail
+    Input text    id=email_create    someInvalidEmail
+
+Then the user registration should be successful
+    Wait until element is visible    class=account 
+    Title Should Be                  My account - My Store
+    Element Text Should Be           class=account            John Test User
+
+Then the system should inform that the e-mail is invalid
+    Wait until element is visible    id=create_account_error
+    Element Text Should Be           id=create_account_error    Invalid email address.
+    Element should be visible        class=form-error
+
+Then the system should inform that the password is invalid
+    Wait until element is visible    class=alert-danger
+    Element Text Should Be           class=alert-danger    There is 1 error\npasswd is invalid.
+
+Then the system should inform that the password is required
+    Wait until element is visible    class=alert-danger
+    Element Text Should Be           class=alert-danger    There is 1 error\npasswd is required.
+
 And click on Create an account
     Click element    id=SubmitCreate
 
@@ -25,6 +46,25 @@ And insert valid user informations
     Input text                       id=customer_firstname       John
     Input text                       id=customer_lastname        Test User
     Input text                       id=passwd                   123456
+    Select from list by value        id=days                     25
+    Select from list by value        id=months                   5
+    Select from list by value        id=years                    1997
+
+And insert invalid user informations by short password
+    Wait until element is visible    id=account-creation_form
+    Click element                    id=id_gender2
+    Input text                       id=customer_firstname       John
+    Input text                       id=customer_lastname        Test User
+    Input text                       id=passwd                   abc
+    Select from list by value        id=days                     25
+    Select from list by value        id=months                   5
+    Select from list by value        id=years                    1997
+
+And insert invalid user informations by empty password
+    Wait until element is visible    id=account-creation_form
+    Click element                    id=id_gender2
+    Input text                       id=customer_firstname       John
+    Input text                       id=customer_lastname        Test User
     Select from list by value        id=days                     25
     Select from list by value        id=months                   5
     Select from list by value        id=years                    1997
@@ -42,7 +82,8 @@ And insert valid address
 And click on Register button
     Click button    id=submitAccount
 
-Then the user registration should be successful
-    Wait until element is visible    class=account 
-    Title Should Be                  My account - My Store
-    Element Text Should Be           class=account            John Test User
+And the first step of registration should fail
+    Title Should Be    Login - My Store
+
+And the user registration should fail
+    Title Should Be    Login - My Store
