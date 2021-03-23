@@ -12,7 +12,7 @@ Fist of all, you need to be in the tests folder to execute them.
 * The API tests are located in the folder: ``QAAutomation/Robot/Integration/Tests/``
 
 ### Executing UI tests
-After you get to the UI tests folder, you can just execute them by inserting in terminal: ``robot <test case name> -d <tests results files (optional)>``
+After you get to the UI tests folder, you can just execute them by inserting in terminal: ``robot -d <output folder (optional)> -v BROWSER:your_browser_here <specific test case (optional)>``
 
 ### Executing API tests
 
