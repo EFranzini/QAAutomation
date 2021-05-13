@@ -6,7 +6,7 @@ Variables    ../constants.py
 
 ***Keywords***
 When the user request the posts
-    ${request}=          Get request    APIUrl    ${POSTS_ENDPOINT}    headers=${default_header}
+    ${request}=          GET on session    APIUrl    ${POSTS_ENDPOINT}    headers=${default_header}
     Set test variable    ${request}
 
 And the response should be a list of valid posts
@@ -19,7 +19,7 @@ And the response should be a list of valid posts
     END
 
 When the user send a post
-    ${request}=          Post request    APIUrl    ${POSTS_ENDPOINT}    json=${NEW_POST_PAYLOAD}    headers=${default_header}
+    ${request}=          POST on session    APIUrl    ${POSTS_ENDPOINT}    json=${NEW_POST_PAYLOAD}    headers=${default_header}
     Set test variable    ${request}
 
 And the new post sent response should be valid
@@ -28,5 +28,5 @@ And the new post sent response should be valid
     Dictionary should contain item    ${request.json()}    userId    ${NEW_POST_PAYLOAD.get("userId")}    
 
 When the delete request is send
-    ${request}=          Delete request       APIUrl    ${POSTS_ENDPOINT}${POST_NUMBER_1}    headers=${default_header}
+    ${request}=          DELETE on session    APIUrl    ${POSTS_ENDPOINT}${POST_NUMBER_1}    headers=${default_header}
     Set test variable    ${request}
