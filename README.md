@@ -1,5 +1,3 @@
-# WIP
-
 # QAAutomation - A basic automation portfolio project
 
 This repository was made as a QA Automation portfolio using **Robot framework**, an excelent framework to automate E2E and API Integration tests.
@@ -20,3 +18,6 @@ To install browser driver, you can download and move the file to /bin folder. Yo
 
 ### Executing API tests
 After you get to the API tests folder, you can just execute them by inserting in terminal: ``robot -d <output folder (optional)>  <specific test case (optional)>``
+
+---
+Made with Robot Framework 4.0.2 (Python 3.8.6 on linux)
