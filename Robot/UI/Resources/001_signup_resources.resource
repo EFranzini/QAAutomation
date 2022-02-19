@@ -31,11 +31,6 @@ When I insert invalid user informations by empty password
     Run keyword    Insert valid address
     Run keyword    Click on Register button
 
-Insert valid e-mail
-    ${email} =     Get random email              ${EMAIL_API}
-    Input text     id=email_create               ${email}
-    Run Keyword    Click on Create an account
-
 When I insert an invalid e-mail
     Input text     id=email_create               someInvalidEmail
     Run Keyword    Click on Create an account
@@ -61,8 +56,10 @@ Then the system should inform that the password is required
     Element Text Should Be           class=alert-danger    There is 1 error\npasswd is required.
     Title Should Be                  Login - My Store
 
-Click on Create an account
-    Click element    id=SubmitCreate
+Insert valid e-mail
+    ${email} =     Get random email              ${EMAIL_API}
+    Input text     id=email_create               ${email}
+    Run Keyword    Click on Create an account
 
 Insert valid user informations
     Wait until element is visible    id=account-creation_form
@@ -105,3 +102,6 @@ Insert valid address
 
 Click on Register button
     Click button    id=submitAccount
+
+Click on Create an account
+    Click element    id=SubmitCreate
