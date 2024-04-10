@@ -6,7 +6,7 @@ Variables    ../constants.py
 Connect to api
     Create session    APIUrl    ${API_URL}    disable_warnings=1
 
-Then the requisition should be successful
+The requisition should be successful
     Request should be successful    ${request}
 
 Given the default header is created

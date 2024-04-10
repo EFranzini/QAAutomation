@@ -3,31 +3,56 @@ Library    RequestsLibrary
 Library    BuiltIn
 Library    Collections
 
+Resource    ../Resources/commom_resources.resource
+
 ***Keywords***
-When the general comments is requested
-    ${request}=          Get request    APIUrl    ${COMMENTS_ENDPOINT}    headers=${default_header}
+When the general comments are requested
+    ${request}=          GET On Session    APIUrl    ${COMMENTS_ENDPOINT}    headers=${default_header}
     Set test variable    ${request}
 
-And the comments should return in payload
+When specific post "${POST_ID}" comments are requested
+    ${request}=          GET On Session    APIUrl    ${COMMENTS_ENDPOINT}    params=postId=${POST_ID}   headers=${default_header}
+    Set test variable    ${POST_ID}
+    Set test variable    ${request}
+
+Then the comments should return in payload
+    The requisition should be successful
+
     FOR    ${comment}    IN    @{request.json()}
 
-    ${post_id}=       Evaluate      isinstance(${comment.get("postId")}, int) 
-    Should be true    ${post_id}
+    ${has_post_id}=       Evaluate      isinstance(${comment.get("postId")}, int) 
+    Should be true    ${has_post_id}
 
-    ${id}=            Evaluate    isinstance(${comment.get("id")}, int)
-    Should be true    ${id}
+    ${has_id}=            Evaluate    isinstance(${comment.get("id")}, int)
+    Should be true    ${has_id}
 
-    ${name}=          Evaluate    isinstance('${comment.get("name")}', str)
-    Should be true    ${name}
+    ${has_name}=          Evaluate    isinstance('${comment.get("name")}', str)
+    Should be true    ${has_name}
 
-    ${email}=         Evaluate    isinstance('${comment.get("email")}', str)
-    Should be true    ${email}
+    ${has_email}=         Evaluate    isinstance('${comment.get("email")}', str)
+    Should be true    ${has_email}
 
     Dictionary should contain key    ${comment}    body
 
     END
 
-When specific post comments are requested
-    [Arguments]          ${POST_ID}
-    ${request}=          Get request                                APIUrl    ${COMMENTS_ENDPOINT}?postId=${POST_ID}
-    Set test variable    ${request}
+Then the specific comments should return in payload
+    The requisition should be successful
+
+    FOR    ${comment}    IN    @{request.json()}
+
+    ${has_post_id}=               Evaluate      isinstance(${comment.get("postId")}, int) 
+    Should Be Equal As Numbers    ${comment.get("postId")}    ${POST_ID}
+
+    ${has_id}=        Evaluate    isinstance(${comment.get("id")}, int)
+    Should be true    ${has_id}
+
+    ${has_name}=      Evaluate       isinstance('${comment.get("name")}', str)
+    Should be true    ${has_name}
+
+    ${has_email}=     Evaluate       isinstance('${comment.get("email")}', str)
+    Should be true    ${has_email}
+
+    Dictionary should contain key    ${comment}    body
+
+    END    
